@@ -18,10 +18,24 @@ public class Parent {
       element.sendKeys(value);
 
     }
+
+    public void ClickFunction(WebElement element){
+        clickable(element);
+      scrollToElement(element);
+      element.click();
+
+    }
     public void waitvisible(WebElement element){
 
         WebDriverWait wait=new WebDriverWait(SingeltonDriver.getDriver(), 10);
         wait.until(ExpectedConditions.visibilityOf(element));
+
+    }
+
+    public void clickable(WebElement element){
+
+        WebDriverWait wait=new WebDriverWait(SingeltonDriver.getDriver(), 10);
+        wait.until(ExpectedConditions.elementToBeClickable(element));
 
     }
 
