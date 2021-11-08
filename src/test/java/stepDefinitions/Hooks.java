@@ -26,32 +26,32 @@ public class Hooks {
         }*/
 
     @Before
-    public void before(Scenario scenario){
-        System.out.println("scenario.getName() = " + scenario.getName()+" hat agefangen");
-       
-        
-    }
-    @After
-    public void after(Scenario scenario){
+    public void before(Scenario scenario) {
+        System.out.println("scenario.getName() = " + scenario.getName() + " hat agefangen");
 
-        System.out.println("scenario.getName()+\" ist vorbei\" = " + scenario.getName()+" ist vorbei");
+
+    }
+
+    @After
+    public void after(Scenario scenario) {
+
+        System.out.println("scenario.getName()+\" ist vorbei\" = " + scenario.getName() + " ist vorbei");
         LocalDateTime date = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yy");
-if(scenario.isFailed()) {
+        if (scenario.isFailed()) {
 
 
+            TakesScreenshot screenshot = (TakesScreenshot) SingeltonDriver.getDriver();
+            File file = screenshot.getScreenshotAs(OutputType.FILE);
 
-    TakesScreenshot screenshot = (TakesScreenshot) SingeltonDriver.getDriver();
-    File file = screenshot.getScreenshotAs(OutputType.FILE);
 
-
-    try {
-        FileUtils.copyFile(file, new File("target/screen/" + scenario.getName() + "" + date.format(formatter) + ".jpg"));
-    } catch (IOException e) {
-        e.printStackTrace();
-    }
-}
-        ExcelUtility.writeExcel("src/test/java/apachiPOI/resourcess/report_Excel.xlsx",scenario.getName(),SingeltonDriver.getDriver().toString(),date.format(formatter),scenario.getStatus());
-       SingeltonDriver.Quit();
+            try {
+                FileUtils.copyFile(file, new File("target/screen/" + scenario.getName() + "" + date.format(formatter) + ".jpg"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        ExcelUtility.writeExcel("src/test/java/apachiPOI/resourcess/report_Excel.xlsx", scenario.getName(), SingeltonDriver.getDriver().toString(), date.format(formatter), scenario.getStatus());
+        SingeltonDriver.Quit();
     }
 }
