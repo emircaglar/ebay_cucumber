@@ -11,7 +11,7 @@ import org.testng.annotations.AfterClass;
         glue = {"stepDefinitions"}
         //tags = {"@SmokeTest"}
 )
-public class _01_Extend_report extends AbstractTestNGCucumberTests {
+public class _02_Extend_report extends AbstractTestNGCucumberTests {
 
     @AfterClass
     public static void afterClass(){
