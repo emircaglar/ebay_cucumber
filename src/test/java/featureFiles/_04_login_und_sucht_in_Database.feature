@@ -1,4 +1,11 @@
 Feature: Project with Database
-  Scenario: with database
+
+  Background:
+
     Given Navigate to ebay
+
+  Scenario: with database
     Then Search a value und click with DataBase as query   "select * from product"
+
+  Scenario: with database and column Count
+    Then Search a value und click with DataBase as query   "select * from product" as column "1" as row "2"
