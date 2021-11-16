@@ -18,6 +18,10 @@ public class DialogContent extends Parent {
     @FindBy(id = "site-search-submit")
     public WebElement searchButtonClick;
 
+    @FindBy(xpath = "//a[text()='Alle anzeigen']")
+    public WebElement loginVerify;
+
+
     WebElement element;
 
     public void finElementandSendKeys(String elementName, String value) {
@@ -43,4 +47,14 @@ public class DialogContent extends Parent {
     }
 
 
+    public void verifElement(String elementName,String value){
+         switch (elementName){
+
+             case "loginVerify":
+                 element=loginVerify;
+
+
+         }
+         verifyContainstext(element,value);
+    }
 }

@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import utilities.SingeltonDriver;
 
 public class Parent {
@@ -44,4 +45,11 @@ public class Parent {
         JavascriptExecutor js=(JavascriptExecutor) SingeltonDriver.getDriver();
         js.executeScript("arguments[0].scrollIntoView();",element);
     }
+
+    public void verifyContainstext(WebElement element,String value) {
+        waitvisible(element);
+        Assert.assertTrue(element.getText().toLowerCase().contains(value.toLowerCase()));
+
+    }
+
 }
